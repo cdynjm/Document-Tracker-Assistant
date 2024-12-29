@@ -39,7 +39,7 @@
                     </div>
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-4">
-                            sample
+                            sample Changes
                             @livewire('pending-documents')
                         </div>
                     </div>
