@@ -26,7 +26,7 @@
     <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}" data-navigate-once></script>
     <script src="{{ asset('assets/js/jquery.min.js') }}" data-navigate-once></script>
     <script src="{{ asset('assets/js/swiper.min.js') }}" data-navigate-once></script>
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous" data-navigate-once></script>
+   {{-- <script src="{{ asset('assets/js/bootstrap.min.js') }}" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous" data-navigate-once></script> --}}
     <script src="{{ asset('assets/js/instascan.min.js') }}" data-navigate-once></script>
     <script src="{{ asset('assets/js/axios.min.js') }}" data-navigate-once></script>
     <script src="{{ asset('assets/js/qrcode.js') }}" data-navigate-once></script>
