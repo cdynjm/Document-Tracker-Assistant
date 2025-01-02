@@ -33,7 +33,7 @@
     <script src="{{ asset('assets/js/qrcode.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.ui.touch-punch.min.js') }}"></script>
-
+ 
     <link rel="stylesheet" href="{{ asset('assets/css/datatable.css') }}">
 
     @if(Auth::check())
