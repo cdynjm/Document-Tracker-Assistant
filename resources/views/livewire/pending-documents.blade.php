@@ -13,7 +13,7 @@
                 
                 <!-- Location and Status Section -->
                 <div class="mt-2">
-                   hello world
+                   hello worlds
                     <div>
                         @if($doc->trackerID != 0)
                             @foreach($tracker->where('docType', $doc->docType) as $tr)
