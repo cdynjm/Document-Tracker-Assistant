@@ -2,11 +2,7 @@
     <div class="list-container">
         @foreach ($documents as $doc)
         <a wire:navigate title="View" href="{{ route('admin-document-tracker', ['id' => $aes->encrypt($doc->id)]) }}?key={{ \Str::random(50) }}" class="text-secondary font-weight-bold text-xs me-2">
-<<<<<<< HEAD
-            
-=======
-
->>>>>>> bc94acf964a77911b38d212cc8bc51dbbe7256ab
+            sample changes
             <div class="list-item mb-1">
                 <!-- Code Section -->
                 <div class="d-flex align-items-center">
