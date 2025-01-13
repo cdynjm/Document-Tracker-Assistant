@@ -974,7 +974,7 @@ $(document).on('click', '#batchDocuments', function (e) {
         html: `
             <div class="mt-2 mb-4">
                 <div class="mb-3">
-                    <small class="text-secondary" style="font-size: 14px">Please provide additional information before batching. Batching documents will generate a single MAIN QR code, which will be attached to the payrolls. This MAIN QR code will represent all the individual QR codes associated with each payroll. After batching and the creation of the new MAIN QR code, it will be used for scanning at the subsequent stations.</small>
+                    <small class="text-secondary" style="font-size: 14px">Please provide additional information before batching. Batching documents will generate a single MAIN QR code, which will be attached to the documents. This MAIN QR code will represent all the individual QR codes associated with each document. After batching and the creation of the new MAIN QR code, it will be used for scanning at the subsequent stations.</small>
                 </div>
                 <textarea id="info" class="form-control" rows="3" placeholder="Enter additional information"></textarea>
             </div>
