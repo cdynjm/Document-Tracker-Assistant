@@ -45,6 +45,12 @@
                             <iconify-icon icon="solar:graph-new-up-line-duotone" width="24" height="24" class="text-secondary"></iconify-icon>
                         </div>
                         <span class="nav-link-text ms-1">Data Analytics</span>
+
+                        <span class="ms-3">
+                            <small class="badge bg-danger" style="font-size: 9px">
+                                BETA
+                            </small>
+                        </span>
                     </a>
                 </li>
                 <li class="nav-item">
