@@ -39,6 +39,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'data-analytics' ? 'active bg-gray text-dark' : '' }}" href="{{ route('data-analytics') }}">
+                        <div
+                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                            <iconify-icon icon="solar:graph-new-up-line-duotone" width="24" height="24" class="text-secondary"></iconify-icon>
+                        </div>
+                        <span class="nav-link-text ms-1">Data Analytics</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a wire:navigate class="nav-link {{ Route::currentRouteName() == 'offices' ? 'active bg-gray text-dark' : '' }}" href="{{ route('offices') }}">
                         <div
                             class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

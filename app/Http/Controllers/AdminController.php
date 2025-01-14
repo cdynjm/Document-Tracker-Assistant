@@ -33,6 +33,11 @@ class AdminController extends Controller
     public function dashboard() {
         return view('pages.admin.admin-dashboard');
     }
+    
+    public function dataAnalytics() {
+        return view('pages.admin.data-analytics');
+    }
+
     public function adminDocumentTracker(Request $request) {
         $documents = $this->AdminInterface->getDocument($request);
        // $request->session()->put('id', $request->id);

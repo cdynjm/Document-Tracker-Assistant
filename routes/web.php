@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::group(['middleware' => 'admin'], function () {
 		Route::get('/admin-dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
+		Route::get('/data-analytics', [AdminController::class, 'dataAnalytics'])->name('data-analytics');
 		Route::get('/offices', [AdminController::class, 'offices'])->name('offices');
 		Route::get('/office-sections', [AdminController::class, 'officeSections'])->name('office-sections');
 		Route::get('/office-accounts', [AdminController::class, 'officeAccounts'])->name('office-accounts');
