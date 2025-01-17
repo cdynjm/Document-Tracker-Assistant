@@ -263,18 +263,16 @@ $(document).on('click', "#startScanBtn", function(e) {
 
     Instascan.Camera.getCameras().then(function(cameras) {
         if (cameras.length > 0) {
-            const cameraOptions = {
-                facingMode: 'environment' // Use the rear camera
-            };
-    
-            const rearCamera = cameras.find(camera => camera.facingMode === 'environment'); // Try to find the rear camera
-    
+            // Check for rear camera (back camera)
+            const rearCamera = cameras.find(camera => camera.name.toLowerCase().includes('back') || camera.name.toLowerCase().includes('rear'));
             if (rearCamera) {
+                // No flip for rear camera
                 document.getElementById('scanner').style.transform = ""; 
                 scanner.start(rearCamera);
             } else {
+                // Fallback to the first available camera (if no rear camera)
                 document.getElementById('scanner').style.transform = ""; 
-                scanner.start(cameras[0]); // Fall back to the first available camera
+                scanner.start(cameras[0]);
             }
         } else {
             console.error('No cameras found.');
@@ -282,7 +280,6 @@ $(document).on('click', "#startScanBtn", function(e) {
     }).catch(function(error) {
         console.error(error);
     });
-    
 
     function stopScanner() {
         scanner.stop();
