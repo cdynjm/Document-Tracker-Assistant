@@ -27,6 +27,7 @@ use App\Models\Documents;
 use App\Models\Sections;
 use App\Models\ReceivedLogs;
 use App\Models\DocumentType;
+use App\Models\DataAnalytics;
 
 class AdminRepository implements AdminInterface {
     protected $aes;
@@ -43,6 +44,11 @@ class AdminRepository implements AdminInterface {
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
+
+    public function getDataAnalytics() {
+        return DataAnalytics::get();
+     }
+     
     public function getDocumentTracker() {
         return Tracker::get();
      }

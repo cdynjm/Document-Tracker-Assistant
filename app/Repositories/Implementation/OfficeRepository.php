@@ -192,6 +192,10 @@ class OfficeRepository implements OfficeInterface {
         $logs = Logs::where(['documentID' => $qrcodeID])
                 ->where(['trackerID' => $get->trackerID + 1])
                 ->count();
+        
+        $section = Tracker::where('docType', $get->docType)
+            ->where('trackerID', $get->trackerID + 1)
+            ->first();
 
         if($logs != 0) {
             Logs::where(['documentID' => $qrcodeID])
@@ -206,14 +210,13 @@ class OfficeRepository implements OfficeInterface {
                 'documentID' => $qrcodeID,
                 'trackerID' => $get->trackerID + 1,
                 'officeID' => $get->officeID,
+                'sectionID' => $section->sectionID,
                 'userID' => Auth::user()->id,
                 'updated_at' => null
             ]);
         }
 
-        $section = Tracker::where('docType', $get->docType)
-                ->where('trackerID', $get->trackerID + 1)
-                ->first();
+        
 
       ReceivedLogs::create([
             'documentID' => $qrcodeID,

@@ -47,6 +47,10 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::delete('/document-type', [AdminController::class, 'deleteDocumentType']);
         });
 
+        Route::group(['prefix' => 'search'], function () {
+            Route::post('/data-analytics', [AdminController::class, 'serarchDataAnalytics']);
+        });
+
     });
 
     Route::group(['middleware' => 'office'], function () {

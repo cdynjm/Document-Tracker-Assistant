@@ -478,11 +478,11 @@ $(document).on('click', "#reject-document", function(e) {
             `);
 
             // Populate the select box with the received data
-            response.data.Office.forEach(office => {
+         /*   response.data.Office.forEach(office => {
                 $officeSelect.append(
                     `<option value="${office.trackerID}">${office.sectionstrack.section}</option>`
                 );
-            });
+            }); */
         } else {
             $officeSelect.html(`<option value="0">Source Office: ${sourceOffice ? sourceOffice : 'Source Office'}</option>`);
         }

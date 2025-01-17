@@ -1316,3 +1316,42 @@ $(document).on('click', '#hide-card', function() {
     }
 });
 
+$(document).on('click', "#search-month-year", function(e){
+    e.preventDefault();
+    SweetAlert.fire({
+        position: 'center',
+        icon: 'info',
+        title: 'Processing...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        willOpen: () => {
+            SweetAlert.showLoading(); // Show the loading indicator
+        }
+    });
+    const formData = new FormData();
+    formData.append('month', $('#month-select').val());
+    formData.append('year', $('#year-select').val());
+    async function APIrequest() {
+        return await axios.post('/api/search/data-analytics', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                "Authorization": "Bearer " + $('meta[name="token"]').attr('content')
+            }
+        })
+    }
+    APIrequest().then(response => {
+        SweetAlert.close();
+        $("#data-analytics-result").html(response.data.DataAnalytics);
+
+    }).catch(error => {
+        console.error('Error:', error);
+        SweetAlert.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!',
+            confirmButtonColor: "#3a57e8"
+        });
+    });
+});
+

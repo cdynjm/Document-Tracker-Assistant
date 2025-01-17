@@ -33,26 +33,27 @@
     <script src="{{ asset('assets/js/qrcode.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.ui.touch-punch.min.js') }}"></script>
- 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <link rel="stylesheet" href="{{ asset('assets/css/datatable.css') }}">
 
     @if(Auth::check())
     @can('accessAdmin', Auth::user())
-    <script src="{{ asset('assets/js/admin.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/admin.js?01162025') }}" data-navigate-once></script>
     @endcan
     @can('accessOffice', Auth::user())
-    <script src="{{ asset('assets/js/office.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/office.js?01162025') }}" data-navigate-once></script>
     @endcan
     @can('accessUser', Auth::user())
-    <script src="{{ asset('assets/js/user.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/user.js?01162025') }}" data-navigate-once></script>
     @endcan
-    <script src="{{ asset('assets/js/signout.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/signout.js?01162025') }}" data-navigate-once></script>
     @else
-    <script src="{{ asset('assets/js/signin.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/signin.js?01162025') }}" data-navigate-once></script>
     @endif
 
     <link href="{{ asset('assets/css/datatables.min.css') }}" rel="stylesheet">
-    <script src="{{ asset('assets/js/datatables.min.js?121924') }}"></script>
+    <script src="{{ asset('assets/js/datatables.min.js?01162025') }}"></script>
 
     <script>
         window.onpopstate = function(event) {
