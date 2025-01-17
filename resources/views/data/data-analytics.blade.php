@@ -1,6 +1,42 @@
 <div id="data-analytics-result">
     <div id="chart"></div>
-
+    <hr class="mb-4">
+    <div class="data-table table-responsive">
+     
+        <table style="width: 100%;" class="table table-sm text-sm text-nowrap">
+            <thead>
+                <tr class="bg-light text-dark">
+                    <th>Stations</th>
+                    <th class="text-center">Avg Time (in Days)</th>
+                    <th class="text-center">Avg Time (in Hours)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $index => $category)
+                    <tr>
+                        <td><span class="ms-3">{{ $category }}</span></td>
+                        <td class="text-center">
+                            @php
+                                // Convert seconds to days
+                                $days = isset($series[$index]) ? floor($series[$index] / (24 * 3600)) : 'N/A';
+                            @endphp
+                            <b>{{ $days }}</b> day(s)
+                        </td>
+                        <td class="text-center">
+                            @php
+                                // Convert seconds to hours
+                                $hours = isset($series[$index]) ? number_format($series[$index] / 3600, 2) : 'N/A';
+                            @endphp
+                            <b>{{ $hours }}</b> hour(s)
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+        
+    </div>
+    
+    
     <script>
         // Log the series and categories data to ensure it's correctly passed
         console.log(@json($series)); // Log the series data

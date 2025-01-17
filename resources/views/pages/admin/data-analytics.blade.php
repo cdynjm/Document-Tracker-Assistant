@@ -9,7 +9,7 @@
                     <div class="card-header rounded-sm">
                         <div class="d-flex flex-row justify-content-between">
                             <div>
-                                <h5 class="mb-3 text-sm text-dark me-3">Stations with Highest Average Time for Document Processing</h5>
+                                <h5 class="mb-3 text-sm text-dark me-3">Stations with Highest Average Time for Document Processing | <b>MONTHLY</b></h5>
                             </div>
                         </div>
 
