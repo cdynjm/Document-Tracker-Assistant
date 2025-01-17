@@ -38,10 +38,10 @@
 
     @if(Auth::check())
     @can('accessAdmin', Auth::user())
-    <script src="{{ asset('assets/js/admin.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/admin.js?3406349') }}" data-navigate-once></script>
     @endcan
     @can('accessOffice', Auth::user())
-    <script src="{{ asset('assets/js/office.js?121924') }}" data-navigate-once></script>
+    <script src="{{ asset('assets/js/office.js?69046459') }}" data-navigate-once></script>
     @endcan
     @can('accessUser', Auth::user())
     <script src="{{ asset('assets/js/user.js?121924') }}" data-navigate-once></script>
