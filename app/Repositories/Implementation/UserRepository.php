@@ -30,6 +30,7 @@ use App\Models\Sections;
 use App\Models\Logs;
 use App\Models\ReturnedLogs;
 use App\Models\ReceivedLogs;
+use App\Models\DataAnalytics;
 
 class UserRepository implements UserInterface {
     protected $aes;
@@ -197,9 +198,22 @@ class UserRepository implements UserInterface {
 
             
         }
+
+        
         $logs = Logs::where(['documentID' => $qrcodeID])
                 ->where(['trackerID' => $get->trackerID + 1])
                 ->count();
+
+        $logsDataAnalytics = Logs::where(['documentID' => $qrcodeID])
+                ->where(['trackerID' => $get->trackerID])
+                ->first();
+
+        DataAnalytics::where('logID', $logsDataAnalytics->id)->orderBy('created_at', 'desc')->first()
+        ?->update(['forward_return' => Carbon::now()]);
+
+        $section = Tracker::where('docType', $get->docType)
+            ->where('trackerID', $get->trackerID + 1)
+            ->first();
 
         if($logs != 0) {
 
@@ -241,6 +255,7 @@ class UserRepository implements UserInterface {
                     'trackerID' => $get->trackerID + 1,
                     'officeID' => $get->officeID,
                     'userID' => $get->userID,
+                    'sectionID' => $section->sectionID,
                     'updated_at' => null
                 ]);
             }
@@ -253,10 +268,6 @@ class UserRepository implements UserInterface {
                 ]);
             }
         }
-
-        $section = Tracker::where('docType', $get->docType)
-            ->where('trackerID', $get->trackerID + 1)
-            ->first();
 
         if($section != null ) {
             ReceivedLogs::create([
@@ -329,6 +340,13 @@ class UserRepository implements UserInterface {
             $logs = Logs::where(['documentID' => $get->id])
                     ->where(['trackerID' => $get->trackerID + 1])
                     ->count();
+
+            $logsDataAnalytics = Logs::where(['documentID' => $get->id])
+            ->where(['trackerID' => $get->trackerID])
+            ->first();
+    
+            DataAnalytics::where('logID', $logsDataAnalytics->id)->orderBy('created_at', 'desc')->first()
+            ?->update(['forward_return' => Carbon::now()]);
 
             if($logs != 0) {
 
@@ -512,6 +530,14 @@ class UserRepository implements UserInterface {
         $userID = $this->aes->decrypt($request->id);
         
         $get = Documents::where(['id' => $qrcodeID])->first();
+
+        $logsDataAnalytics = Logs::where(['documentID' => $qrcodeID])
+        ->where(['trackerID' => $get->trackerID])
+        ->first();
+
+        DataAnalytics::where('logID', $logsDataAnalytics->id)->orderBy('created_at', 'desc')->first()
+            ?->update(['forward_return' => Carbon::now()]);
+
         $tracker = Tracker::where(['docType' => $get->docType])->orderBy('trackerID', 'DESC')->first();
         Documents::where(['id' => $qrcodeID])->update(['trackerID' => $request->office]);
         
@@ -733,6 +759,12 @@ class UserRepository implements UserInterface {
                         ->where('trackerID', $doc->trackerID)
                         ->first();
     
+                    DataAnalytics::create([
+                        'logID' => $latestLogReceived->id,
+                        'sectionID' => $latestLogReceived->sectionID,
+                        'received' => Carbon::now(),
+                    ]);
+
                     if ($latestLogReceived) {
                         $latestLogReceived->update([
                         // 'created_at' => Carbon::now(),
@@ -842,6 +874,13 @@ class UserRepository implements UserInterface {
                         ->where('trackerID', $documents->trackerID)
                         ->first();
     
+                DataAnalytics::create([
+                    'logID' => $latestLogReceived->id,
+                    'sectionID' => $latestLogReceived->sectionID,
+                    'received' => Carbon::now(),
+                ]);
+
+                
                 if ($latestLogReceived) {
                     $latestLogReceived->update([
                        // 'created_at' => Carbon::now(),

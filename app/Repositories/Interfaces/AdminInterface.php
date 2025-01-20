@@ -45,6 +45,8 @@ interface AdminInterface
     public function office($request);
     public function getDocument($request);
 
+    public function getDataAnalytics();
+
 
 }
 

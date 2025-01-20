@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DataAnalytics;
+use Carbon\Carbon;
 
 //CIPHER:
 use App\Http\Controllers\AESCipher;
@@ -35,7 +37,73 @@ class AdminController extends Controller
     }
     
     public function dataAnalytics() {
-        return view('pages.admin.data-analytics');
+        // Fetch data analytics records for the current month and eager load the Section relationship
+        $dataAnalytics = DataAnalytics::whereNotNull('forward_return')
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->with('Section') // Eager load the Section relationship
+            ->get();
+    
+        // Group by sectionID and calculate averages
+        $chartData = $dataAnalytics->groupBy('sectionID')->map(function ($group) {
+            // Compute the time differences for each row in this sectionID group
+            $differences = $group->map(function ($item) {
+                return strtotime($item->forward_return) - strtotime($item->received);
+            });
+    
+            // Compute the average difference
+            return $differences->avg();
+        });
+    
+        // Sort the data by the average in descending order and take the top 10
+        $top10ChartData = $chartData->sortDesc()->take(7);
+    
+        // Prepare data for the chart
+        $categories = $top10ChartData->keys()->map(function ($sectionID) use ($dataAnalytics) {
+            // Map sectionIDs to section names
+            return $dataAnalytics->firstWhere('sectionID', $sectionID)->Section->section;
+        });
+    
+        $series = $top10ChartData->values(); // Averages as y-axis values
+    
+        // Pass the categories and series data to the view
+        return view('pages.admin.data-analytics', compact('categories', 'series'));
+    }
+
+    public function serarchDataAnalytics(Request $request) {
+        // Fetch data analytics records for the current month and eager load the Section relationship
+        $dataAnalytics = DataAnalytics::whereNotNull('forward_return')
+            ->whereMonth('created_at', $request->month)
+            ->whereYear('created_at', $request->year)
+            ->with('Section') // Eager load the Section relationship
+            ->get();
+    
+        // Group by sectionID and calculate averages
+        $chartData = $dataAnalytics->groupBy('sectionID')->map(function ($group) {
+            // Compute the time differences for each row in this sectionID group
+            $differences = $group->map(function ($item) {
+                return strtotime($item->forward_return) - strtotime($item->received);
+            });
+    
+            // Compute the average difference
+            return $differences->avg();
+        });
+    
+        // Sort the data by the average in descending order and take the top 10
+        $top10ChartData = $chartData->sortDesc()->take(7);
+    
+        // Prepare data for the chart
+        $categories = $top10ChartData->keys()->map(function ($sectionID) use ($dataAnalytics) {
+            // Map sectionIDs to section names
+            return $dataAnalytics->firstWhere('sectionID', $sectionID)->Section->section;
+        });
+    
+        $series = $top10ChartData->values(); // Averages as y-axis values
+    
+        // Pass the categories and series data to the view
+        return response()->json([
+           'DataAnalytics' => view('data.data-analytics', compact('categories', 'series'))->render()
+        ], Response::HTTP_OK);
     }
 
     public function adminDocumentTracker(Request $request) {

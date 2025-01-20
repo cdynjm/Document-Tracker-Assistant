@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-6 text-lg-end text-sm-start">
                 <div id="clock" class="clock fs-2 fw-bold ms-auto ">
-                    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span> <span id="ampm">AM</span>
+                    <span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span> <span id="ampm" class="ms-2">AM</span>
                 </div>
                 <div id="date" class="date text-sm fw-normal ms-auto mb-3"></div>
             </div>
