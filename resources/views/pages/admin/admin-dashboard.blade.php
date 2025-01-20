@@ -50,15 +50,7 @@
             <!-- Recent Logs -->
             <div class="col-md-8 mb-4">
                 <div class="card border-radius-md">
-                    <div class="card-header pb-0">
-                        <div class="d-flex flex-row justify-content-between">
-                            <div>
-                                <h5 class="mb-2 text-sm text-dark">
-                                    <i class="fa-solid fa-map-pin me-1 text-sm"></i> Recent Logs
-                                </h5>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-4">
                             @livewire('system-logs')
