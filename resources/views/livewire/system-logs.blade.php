@@ -1,7 +1,11 @@
 <div>
-    <div class="d-flex justify-content-between mb-3 mt-0">
-        <div>
-            <label for="filter-date" class="text-xs text-secondary">Search</label>
+    <div class="d-flex justify-content-between mb-3 mt-0 align-items-center">
+        <div class="d-flex align-items-center">
+            <h5 class="text-sm text-dark m-0">
+                <i class="fa-solid fa-map-pin me-1 text-sm"></i> Recent Logs
+            </h5>
+        </div>
+        <div class="d-flex align-items-center">
             <input 
                 type="date" 
                 wire:model.live="filterDate" 
@@ -10,6 +14,7 @@
             >
         </div>
     </div>
+    
     
     <center>
         <!-- Loading Indicator -->
